@@ -1,0 +1,15 @@
+export const COOKIE = "COOKIE";
+export const ERROR_MESSAGE = "ERROR_MESSAGE";
+export const EXPIRY_DATE = "EXPIRY_DATE";
+export const FAIL = "FAIL";
+export const FINISHED = "FINISHED";
+export const GUESSES = "GUESSES";
+export const KEYBOARD = "KEYBOARD";
+export const LAST_VISITED = "LAST_VISITED";
+export const LETTER_NUM = "LETTER_NUM";
+export const NO_FINISH = "NO_FINISH";
+export const ROW = "ROW";
+export const ROW_SHAKE = "ROW_SHAKE";
+export const SCORE = "SCORE";
+export const SHOW_MODAL = "SHOW_MODAL";
+export const TODAYS_WORD = "TODAYS_WORD";

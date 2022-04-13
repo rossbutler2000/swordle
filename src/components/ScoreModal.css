@@ -1,0 +1,21 @@
+.ui.modal>.stats-content {
+  display: flex;
+}
+
+.stat-item {
+  width: 50%;
+}
+
+.ui.progress.stat-bar {
+  background: none;
+  display: flex;
+  flex-grow: 1;
+  margin: 5px 0 0 5px;
+  
+}
+
+.score-row {
+  display: flex;
+  flex-wrap: nowrap;
+  vertical-align: bottom;
+}
