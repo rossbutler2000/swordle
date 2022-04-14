@@ -54,24 +54,26 @@ class App extends React.Component {
   createCookies = (date) => {
     const { cookies, expireDate } = this.props;
     const { guesses, keyboard, letterNum, row, score } = initialState;
+    const details = { expires: expireDate, path: '/' };
     
-    cookies.set(GUESSES, guesses, expireDate);
-    cookies.set(KEYBOARD, keyboard, expireDate);
-    cookies.set(LETTER_NUM, letterNum, expireDate);
-    cookies.set(ROW, row, expireDate);
-    cookies.set(SCORE, score, expireDate);
-    cookies.set(LAST_VISITED, date, expireDate);
+    cookies.set(GUESSES, guesses, { ...details });
+    cookies.set(KEYBOARD, keyboard, { ...details });
+    cookies.set(LETTER_NUM, letterNum, { ...details });
+    cookies.set(ROW, row, { ...details });
+    cookies.set(SCORE, score, { ...details });
+    cookies.set(LAST_VISITED, date, { ...details });
   }
 
   newDay = (date) => {
     const { cookies, expireDate } = this.props;
     const { guesses, keyboard, letterNum, row } = initialState;
+    const details = { expires: expireDate, path: '/' };
     
-    cookies.set(GUESSES, guesses, expireDate);
-    cookies.set(KEYBOARD, keyboard, expireDate);
-    cookies.set(LETTER_NUM, letterNum, expireDate);
-    cookies.set(ROW, row, expireDate);
-    cookies.set(LAST_VISITED, date, expireDate);
+    cookies.set(GUESSES, guesses, { ...details });
+    cookies.set(KEYBOARD, keyboard, { ...details });
+    cookies.set(LETTER_NUM, letterNum, { ...details });
+    cookies.set(ROW, row, { ...details });
+    cookies.set(LAST_VISITED, date, { ...details });
   }
 
   loadCookies = () => {

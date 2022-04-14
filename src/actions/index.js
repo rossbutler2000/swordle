@@ -20,21 +20,21 @@ import initialState from "../data/initialState";
 
 export const changeGuesses = (guesses) => (dispatch, getState) => {
   const { cookies, expireDate } = getState();
-  cookies.set(GUESSES, guesses, expireDate);
+  cookies.set(GUESSES, guesses, { expires: expireDate, path: '/' });
 
   dispatch({ type: GUESSES, payload: guesses });
 }
 
 export const changeKeyboard = (keyboard) => (dispatch, getState) => {
   const { cookies, expireDate } = getState();
-  cookies.set(KEYBOARD, keyboard, expireDate);
+  cookies.set(KEYBOARD, keyboard, { expires: expireDate, path: '/' });
 
   dispatch({ type: KEYBOARD, payload: keyboard });
 }
 
 export const changeLetterNum = (number) => (dispatch, getState) => {
   const { cookies, expireDate } = getState();
-  cookies.set(LETTER_NUM, number, expireDate);
+  cookies.set(LETTER_NUM, number, { expires: expireDate, path: '/' });
 
   dispatch({ type: LETTER_NUM, payload: number });
 }
@@ -45,13 +45,13 @@ export const changeScore = (pointIn) => (dispatch, getState) => {
   const amount = score[pointIn] + 1;
   const newScore = { ...score, [pointIn]: amount };
 
-  cookies.set(SCORE, newScore, expireDate);
+  cookies.set(SCORE, newScore, { expires: expireDate, path: '/' });
   dispatch({ type: SCORE, payload: newScore });
 }
 
 export const changeRow = (number) => (dispatch, getState) => {
   const { cookies, expireDate } = getState();
-  cookies.set(ROW, number, expireDate);
+  cookies.set(ROW, number, { expires: expireDate, path: '/' });
 
   dispatch({ type: ROW, payload: number});
 }
@@ -68,7 +68,7 @@ export const checkWord = () => (dispatch, getState) => {
 
 export const finish = () => (dispatch, getState) => {
   const { cookies, expireDate } = getState();
-  cookies.set(FINISHED, true, expireDate);
+  cookies.set(FINISHED, true, { expires: expireDate, path: '/' });
 
   dispatch({ type: FINISHED, payload: true });
 }
@@ -79,7 +79,7 @@ export const firstLetter = () => {
 
 export const nextRow = () => (dispatch, getState) => {
   const { cookies, expireDate, row } = getState();
-  cookies.set(ROW, row + 1, expireDate);
+  cookies.set(ROW, row + 1, { expires: expireDate, path: '/' });
 
   dispatch({ type: ROW, payload: row + 1 })
 }
@@ -98,7 +98,7 @@ export const setExpiryDate = (date) => {
 
 export const setScore = (score) => (dispatch, getState) => {
   const { cookies, expireDate } = getState();
-  cookies.set(SCORE, score, expireDate);
+  cookies.set(SCORE, score, { expires: expireDate, path: '/' });
 
   dispatch({ type: SCORE, payload: score });
 }
