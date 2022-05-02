@@ -11,7 +11,7 @@ import {
   ROW,
   ROW_SHAKE,
   SCORE,
-  SHOW_MODAL,
+  SHOW_SCORE,
   TODAYS_WORD
 } from "../data/types";
 import initialState from "../data/initialState";
@@ -25,15 +25,7 @@ const {
   score,
   startDate,
   today
-} = initialState
-
-const cookiesReducer = (cookie = null, action) => {
-  if (action.type === COOKIE) {
-    return action.payload;
-  }
-
-  return cookie;
-}
+} = initialState;
 
 const errorMessageReducer = (error = '', action) => {
   if (action.type === ERROR_MESSAGE) {
@@ -71,7 +63,7 @@ const guessReducer = (guessesObject = guesses, action) => {
   return [...guessesObject];
 }
 
-const keyBoardReducer = (keyBoard = keyboard, action) => {
+const keyboardReducer = (keyBoard = keyboard, action) => {
   if (action.type === KEYBOARD) {
     return [...action.payload];
   }
@@ -111,8 +103,8 @@ const scoreReducer = (scores = score, action) => {
   return scores;
 }
 
-const showModalReducer = (value = false, action) => {
-  if (action.type === SHOW_MODAL) {
+const scoreModalReducer = (value = false, action) => {
+  if (action.type === SHOW_SCORE) {
     return action.payload;
   }
 
@@ -137,18 +129,17 @@ const todaysWordReducer = (word = null, action) => {
 
 
 export default combineReducers({
-  cookies: cookiesReducer,
   errorMessage: errorMessageReducer,
   expireDate: expireDateReducer,
   failModal: failModalReducer,
   finishedToday: finishedTodayReducer,
   guesses: guessReducer,
-  keyBoard: keyBoardReducer,
+  keyboard: keyboardReducer,
   letterNum: letterNumReducer,
   row: rowReducer,
   rowShake: rowShakeReducer,
   score: scoreReducer,
-  showModal: showModalReducer,
+  scoreModal: scoreModalReducer,
   startDate: startDateReducer,
   today: todayReducer,
   todaysWord: todaysWordReducer,

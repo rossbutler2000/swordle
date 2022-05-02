@@ -11,5 +11,5 @@ export const NO_FINISH = "NO_FINISH";
 export const ROW = "ROW";
 export const ROW_SHAKE = "ROW_SHAKE";
 export const SCORE = "SCORE";
-export const SHOW_MODAL = "SHOW_MODAL";
+export const SHOW_SCORE = "SHOW_SCORE";
 export const TODAYS_WORD = "TODAYS_WORD";

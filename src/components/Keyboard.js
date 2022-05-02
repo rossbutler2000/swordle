@@ -39,7 +39,7 @@ class Keyboard extends React.Component {
     const row = [];
 
     for (let i = 0; i < 10; i++) {
-      row.push(this.letterButton(this.props.keyBoard[i]));
+      row.push(this.letterButton(this.props.keyboard[i]));
     }
 
     return row;
@@ -49,7 +49,7 @@ class Keyboard extends React.Component {
     const row = [];
 
     for (let i = 10; i < 19; i++) {
-      row.push(this.letterButton(this.props.keyBoard[i]));
+      row.push(this.letterButton(this.props.keyboard[i]));
     }
 
     return row;
@@ -66,7 +66,7 @@ class Keyboard extends React.Component {
     ];
 
     for (let i = 19; i < 26; i++) {
-      row.push(this.letterButton(this.props.keyBoard[i]));
+      row.push(this.letterButton(this.props.keyboard[i]));
     }
 
     row.push(
@@ -194,7 +194,7 @@ const mapStateToProps = (state) => {
     expireDate: state.expireDate,
     finishedToday: state.finishedToday,
     guesses: state.guesses,
-    keyBoard: state.keyBoard,
+    keyboard: state.keyboard,
     letterNum: state.letterNum,
     row: state.row,
     todaysWord: state.todaysWord

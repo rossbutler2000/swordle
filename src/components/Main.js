@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Container }  from "semantic-ui-react";
 
+import CookieManager from "./CookieManager";
 import FailModal from "./FailModal";
 import GuessGrid from "./GuessGrid";
 import Header from "./Header";

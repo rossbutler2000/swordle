@@ -2,37 +2,70 @@ import React from "react";
 import { connect } from "react-redux";
 import { Header, Modal, Progress } from "semantic-ui-react";
 
+import { NO_FINISH } from "../data/types";
+import { showScore } from "../actions";
 import "./ScoreModal.css";
 
 class ScoreModal extends React.Component {
   percentBar = (value) => {
-    return (
-      <Progress className="stat-bar" percent={value} size="small" />
-    );
+    if (value > 0) {
+      return (
+        <Progress
+          className="stat-bar"
+          value={value}
+          progress="value"
+          size="small"
+        />
+      );
+    } else {
+      return <div>&ensp;{value}</div>;
+    }
+    
   }
 
   barGraph = () => {
     const { score } = this.props;
 
     return Object.keys(score).map(key => {
-      return (
-        <div className="score-row" key={key}>
-          <p>{key}:</p>
-          {this.percentBar(score[key])}
-        </div>
-      )
+      if (key !== NO_FINISH) {
+        return (
+          <div className="score-row" key={key}>
+            <p>{key}: </p>
+            {this.percentBar(score[key])}
+          </div>
+        );
+      }
     });
   }
 
   stats = () => {
+    const { score } = this.props;
+
+    let totalGames = 0;
+    let numerator = 0;
+    Object.keys(score).forEach(key => {
+      numerator += key === NO_FINISH ? null : key * score[key];
+      totalGames += score[key];
+    });
+
+    const average = numerator / totalGames;
+
     return (
-      <div>Hi</div>
+      <div>
+        Total Games: {totalGames}
+        <br />
+        Average: {average.toFixed(2)}
+      </div>
     )
   }
 
   render() {
     return (
-      <Modal open={this.props.showModal}>
+      <Modal
+        open={this.props.scoreModal}
+        closeIcon
+        onClose={this.props.showScore}
+      >
         <Header>Statistics</Header>
         <Modal.Content className="stats-content">
           <div className="stat-item">
@@ -50,8 +83,8 @@ class ScoreModal extends React.Component {
 const mapStateToProps = (state) => {
   return {
     score: state.score,
-    showModal: state.showModal
+    scoreModal: state.scoreModal
   };
 }
 
-export default connect(mapStateToProps, null)(ScoreModal);
+export default connect(mapStateToProps, { showScore })(ScoreModal);

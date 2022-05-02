@@ -11,6 +11,8 @@ const score = {};
 for (let i = 0; i < rows; i++) {
   score[i + 1] = 0;
 }
+// Test score
+//const score = { 1: 0, 2: 3, 3: 45, 4: 67, 5: 46, 6: 12, 7: 0 }
 score[NO_FINISH] = 0;
 
 const initialState = {
@@ -26,7 +28,7 @@ const initialState = {
   rowShake: Array(rows).fill(false),
   score,
   startDate: new Date('Apr 12, 2022 23:59:30'),
-  today: Date.now(),
+  today: new Date(),
   totalRows: rows
 };
 
