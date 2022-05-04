@@ -8,7 +8,6 @@ class Solver extends React.Component {
   componentDidUpdate() {
     let { character } = this.props;
     character = character.key.toUpperCase();
-    console.log(character)
 
     if (!this.props.finishedToday) {
       if (character === "BACKSPACE") {
