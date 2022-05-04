@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 
 import {
-  COOKIE,
+  CHARACTER,
   ERROR_MESSAGE,
   FAIL,
   FINISHED,
@@ -26,6 +26,14 @@ const {
   startDate,
   today
 } = initialState;
+
+const characterReducer = (char = null, action) => {
+  if (action.type === CHARACTER) {
+    return action.payload;
+  }
+
+  return char;
+}
 
 const errorMessageReducer = (error = '', action) => {
   if (action.type === ERROR_MESSAGE) {
@@ -129,6 +137,7 @@ const todaysWordReducer = (word = null, action) => {
 
 
 export default combineReducers({
+  character: characterReducer,
   errorMessage: errorMessageReducer,
   expireDate: expireDateReducer,
   failModal: failModalReducer,

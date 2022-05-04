@@ -2,6 +2,21 @@ import { GUESSES, KEYBOARD } from "../data/types";
 import { ALL_WORDS } from "../data/ALLWORDS";
 import initialState from "../data/initialState";
 
+
+export const checkCorrect = () => (dispatch, getState) => {
+  let check = true;
+  const { colors } = initialState;
+  const { guesses, row } = getState();
+
+  guesses[row].forEach(letterObject => {
+    if (letterObject.color !== colors[0]) {
+      check = false;
+    }
+  });
+
+  return check;
+}
+
 export const checkWord = () => (dispatch, getState) => {
   const { guesses, row } = getState();
   let word = "";

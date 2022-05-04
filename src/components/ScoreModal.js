@@ -54,7 +54,7 @@ class ScoreModal extends React.Component {
       <div>
         Total Games: {totalGames}
         <br />
-        Average: {average.toFixed(2)}
+        Average: {Number.isFinite(average) ? average.toFixed(2) : "None"}
       </div>
     )
   }
@@ -69,6 +69,9 @@ class ScoreModal extends React.Component {
         <Header>Statistics</Header>
         <Modal.Content className="stats-content">
           <div className="stat-item">
+            Guesses:
+            <br />
+            <br />
             {this.barGraph()}
           </div>
           <div className="stat-item">

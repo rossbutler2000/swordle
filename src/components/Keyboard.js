@@ -2,21 +2,7 @@ import React from "react";
 import { Button, Grid, Icon } from "semantic-ui-react";
 import { connect } from "react-redux";
 
-import {
-  changeGuesses,
-  changeLetterNum,
-  changeRow,
-  changeScore,
-  checkWord,
-  finish,
-  firstLetter,
-  nextRow,
-  shakeRow,
-  showFail,
-  solve
-} from "../actions";
-import { NO_FINISH } from "../data/types";
-import initialState from "../data/initialState";
+import { buttonPress } from "../actions";
 import "./Keyboard.css"
 
 class Keyboard extends React.Component {
@@ -30,7 +16,7 @@ class Keyboard extends React.Component {
         content={letter}
         color={color}
         key={letter}
-        onClick={() => this.handlePress(letter)}
+        onClick={() => this.props.buttonPress({ key: letter })}
       />
     );
   }
@@ -56,12 +42,15 @@ class Keyboard extends React.Component {
   }
 
   rowThree = () => {
+    const enter = "ENTER";
+    const backspace = "BACKSPACE";
+
     const row = [
       <Button 
         className="large-button"
-        key="enter"
-        content="ENTER"
-        onClick={this.props.finishedToday ? null : this.handleEnter}
+        key={enter}
+        content={enter}
+        onClick={() => this.props.buttonPress({ key: enter })}
       />
     ];
 
@@ -72,111 +61,17 @@ class Keyboard extends React.Component {
     row.push(
       <Button
         className="large-button"
-        key="delete"
+        key={backspace}
         content={<Icon name="arrow left" />}
-        onClick={this.props.finishedToday ? null : this.handleDelete}
+        onClick={() => this.props.buttonPress({ key: backspace })}
       />
     )
 
     return row;
   }
 
-  handlePress = (letter) => {
-    const { guesses, row, letterNum } = this.props;
-    const word = [...guesses[row]];
-
-    if (letterNum < 6) {
-      if (/[a-zA-Z]/.test(letter)) {
-        word[letterNum] = { ...word[letterNum], letter: letter.toUpperCase() };
-        guesses[row] = word;
-
-        this.props.changeGuesses(guesses);
-        this.props.changeLetterNum(letterNum + 1);
-      }
-    }
-  }
-
-  handleDelete = () => {
-    const { guesses, row } = this.props;
-    let { letterNum } = this.props;
-    const word = [...guesses[row]];
-
-    if (letterNum > 0) {
-      letterNum--;
-      word[letterNum] = { ...word[letterNum], letter: ' ' };
-      guesses[row] = word;
-
-      this.props.changeGuesses(guesses);
-      this.props.changeLetterNum(letterNum);
-    }
-  }
-
-  handleEnter = () => {
-    const { row } = this.props;
-
-    // If guess is not long enough
-    if (this.props.letterNum < 6) {
-      this.props.shakeRow("Word must be 6 letters");
-    }
-    
-    // "letterNum" must be 6
-    else if (this.props.letterNum === 6) {
-      // When the guess is a real word
-      if (this.props.checkWord()) {
-        this.props.solve();
-
-        // Correct
-        if (this.checkCorrect()) {
-          this.props.finish();
-          this.props.changeScore(row + 1);
-          this.props.changeLetterNum(7);
-          this.props.changeRow(initialState.totalRows);
-        }
-        // Next guess
-        else {
-          this.props.nextRow();
-          this.props.firstLetter();
-          
-          if (this.props.row === initialState.totalRows) {
-            this.props.finish();
-            this.props.changeScore(NO_FINISH);
-            this.props.showFail(true);
-          }
-        }
-      } else {
-        this.props.shakeRow("Must use a real word");
-      }
-    }
-  }
-
-  checkCorrect = () => {
-    let check = true;
-    const { colors } = initialState;
-    const { guesses, row } = this.props;
-
-    guesses[row].forEach(letterObject => {
-      if (letterObject.color !== colors[0]) {
-        check = false;
-      }
-    });
-
-    return check;
-  }
-
-  keyPress = (event) => {
-    if (!this.props.finishedToday) {
-      if (event.key === "Backspace") {
-        this.handleDelete();
-      } else if (event.key === "Enter") {
-        this.handleEnter();
-      } else if (event.key.length === 1 && /[a-zA-Z]/.test(event.key)) {
-        this.handlePress(event.key);
-      }
-    }
-  }
-
   render() {
-    document.addEventListener("keydown", this.keyPress)
+    document.addEventListener("keydown", this.props.buttonPress);
 
     return (
       <Grid className="keyboard-grid">
@@ -189,30 +84,7 @@ class Keyboard extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return {
-    cookies: state.cookies,
-    expireDate: state.expireDate,
-    finishedToday: state.finishedToday,
-    guesses: state.guesses,
-    keyboard: state.keyboard,
-    letterNum: state.letterNum,
-    row: state.row,
-    todaysWord: state.todaysWord
-  }
+  return { keyboard: state.keyboard }
 };
 
-export default connect(mapStateToProps,
-  {
-    changeGuesses,
-    changeLetterNum,
-    changeRow,
-    changeScore,
-    checkWord,
-    finish,
-    firstLetter,
-    nextRow,
-    shakeRow,
-    showFail,
-    solve
-  }
-)(Keyboard);
+export default connect(mapStateToProps, { buttonPress })(Keyboard);

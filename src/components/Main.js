@@ -2,13 +2,14 @@ import React from "react";
 import { connect } from "react-redux";
 import { Container }  from "semantic-ui-react";
 
-import CookieManager from "./CookieManager";
 import FailModal from "./FailModal";
 import GuessGrid from "./GuessGrid";
 import Header from "./Header";
 import Keyboard from "./Keyboard";
 import ScoreModal from "./ScoreModal";
+import Solver from "./Solver";
 import "./Main.css";
+
 
 class Main extends React.Component {
   getDate = () => {
@@ -21,6 +22,7 @@ class Main extends React.Component {
       <div className="app">
         <ScoreModal />
         <FailModal />
+        <Solver />
         <Header />
 
         <div className="game">

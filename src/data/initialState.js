@@ -5,6 +5,7 @@ const defaultColor = "black";
 const expireDate = new Date();
 expireDate.setFullYear(expireDate.getFullYear() + 1);
 
+const letters = 6;
 const rows = 7;
 
 const score = {};
@@ -19,7 +20,7 @@ const initialState = {
   colors: ["green", "yellow", "grey"],
   defaultColor,
   expireDate,
-  guesses: Array(rows).fill(Array(6).fill({ letter: ' ', color: defaultColor })),
+  guesses: Array(rows).fill(Array(letters).fill({ letter: ' ', color: defaultColor })),
   keyboard: "QWERTYUIOPASDFGHJKLZXCVBNM".split('').map(letter => {
     return { letter, color: null };
   }),
@@ -29,6 +30,7 @@ const initialState = {
   score,
   startDate: new Date('Apr 12, 2022 23:59:30'),
   today: new Date(),
+  totalLetters: letters,
   totalRows: rows
 };
 

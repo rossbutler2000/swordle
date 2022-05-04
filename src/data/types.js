@@ -1,3 +1,4 @@
+export const CHARACTER = "CHARACTER";
 export const COOKIE = "COOKIE";
 export const ERROR_MESSAGE = "ERROR_MESSAGE";
 export const EXPIRY_DATE = "EXPIRY_DATE";

@@ -6,6 +6,7 @@ import {
   changeKeyboard,
   changeLetterNum,
   changeRow,
+  changeScore,
   setExpiryDate,
   selectTodaysWord,
   setScore,
@@ -44,17 +45,18 @@ class CookieManager extends React.Component {
     cookies.set(LAST_VISITED, today);
   }
 
-  componentDidUpdate(state) {
+  componentDidUpdate() {
     const {
       cookies, expireDate, guesses,
-      keyboard, letterNum, row
-    } = state;
+      keyboard, letterNum, row, score
+    } = this.props;
     const details = { expires: expireDate, path: '/' };
 
     cookies.set(GUESSES, guesses, details);
     cookies.set(KEYBOARD, keyboard, details);
     cookies.set(LETTER_NUM, letterNum, details);
     cookies.set(ROW, row, details);
+    cookies.set(SCORE, score, details);
   }
 
   createCookies = () => {
@@ -76,6 +78,7 @@ class CookieManager extends React.Component {
     this.props.changeKeyboard(cookies.get(KEYBOARD));
     this.props.changeLetterNum(parseInt(cookies.get(LETTER_NUM)));
     this.props.changeRow(parseInt(cookies.get(ROW)));
+    this.props.changeScore(cookies.get(SCORE));
   }
 
   getDateDiff(current, before) {
@@ -107,6 +110,7 @@ export default connect(mapStateToProps,
     changeKeyboard,
     changeLetterNum,
     changeRow,
+    changeScore,
     setExpiryDate,
     selectTodaysWord,
     setScore,
