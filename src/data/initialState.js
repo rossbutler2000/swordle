@@ -20,7 +20,8 @@ const initialState = {
   colors: ["green", "yellow", "grey"],
   defaultColor,
   expireDate,
-  guesses: Array(rows).fill(Array(letters).fill({ letter: ' ', color: defaultColor })),
+  guesses: Array(rows).fill(Array(letters).fill(
+    { animate: true, color: defaultColor, letter: ' ' })),
   keyboard: "QWERTYUIOPASDFGHJKLZXCVBNM".split('').map(letter => {
     return { letter, color: null };
   }),

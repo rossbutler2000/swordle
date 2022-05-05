@@ -1,7 +1,30 @@
-import { GUESSES, KEYBOARD } from "../data/types";
+import { GUESSES, KEYBOARD, SHOW_SCORE } from "../data/types";
 import { ALL_WORDS } from "../data/ALLWORDS";
 import initialState from "../data/initialState";
 
+export const bounce = () => (dispatch, getState) => {
+  const { guesses, row } = getState();
+  const newGuesses = [...guesses];
+  const guess = [...guesses[row]];
+  let time = 0;
+
+  for (let i = 0; i < guess.length; i++) {
+  
+    setTimeout(() => {
+      guess[i] = { ...guess[i], animate: false };
+      newGuesses[row] = guess;
+      dispatch({ type: GUESSES, payload: newGuesses });
+
+      guess[i] = { ...guess[i], animate: true };
+      newGuesses[row] = guess;
+      dispatch({ type: GUESSES, payload: newGuesses });
+    }, time);
+
+    time += 100;
+  }
+
+  setTimeout(() => {dispatch({type: SHOW_SCORE, payload: true })}, time + 1200);
+}
 
 export const checkCorrect = () => (dispatch, getState) => {
   let check = true;

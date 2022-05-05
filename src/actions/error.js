@@ -11,6 +11,6 @@ export const shakeRow = (errorMessage = '') => (dispatch, getState) => {
   dispatch({ type: ROW_SHAKE, payload: newShake });
 
   setTimeout(() => {
-    dispatch({ type: ERROR_MESSAGE, payload: '' })
+    dispatch({ type: ERROR_MESSAGE, payload: '' });
   }, 1500);
 }

@@ -9,16 +9,22 @@ import initialState from "../data/initialState";
 
 class GuessGrid extends React.Component {
   letterTile = (letterObject, key) => {
-    const { letter, color } = letterObject;
+    const { animate, color, letter } = letterObject;
 
     return (
-      <Label
-        className="letter-tile" 
-        content={letter}
-        color={color}
-        basic={color === initialState.defaultColor}
+      <Transition
+        animation="bounce"
+        duration={1000}
+        visible={animate}
         key={key}
-      />
+      >
+        <Label
+          className="letter-tile" 
+          content={letter}
+          color={color}
+          basic={color === initialState.defaultColor}
+        />
+      </Transition>
     );
   }
 

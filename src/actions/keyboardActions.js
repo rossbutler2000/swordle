@@ -8,7 +8,7 @@ import {
   changeRow, changeScore
 } from "./change";
 import { shakeRow } from "./error";
-import { checkCorrect, checkWord, solve } from "./solver";
+import { bounce, checkCorrect, checkWord, solve } from "./solver";
 import initialState from "../data/initialState";
 
 
@@ -49,6 +49,7 @@ export const enter = () => (dispatch, getState) => {
       if (dispatch(checkCorrect())) {
         dispatch({ type: FINISHED, payload: true });
         dispatch(changeScore(row + 1));
+        dispatch(bounce());
         dispatch(changeLetterNum(initialState.totalLetters));
         dispatch(changeRow(initialState.totalRows));
       }
