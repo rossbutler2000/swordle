@@ -24,7 +24,7 @@ import initialState from "../data/initialState";
 class CookieManager extends React.Component {
 
   componentDidMount() {
-    const { cookies, today } = this.props;
+    const { cookies, expireDate, today } = this.props;
     let lastVisited = cookies.get(LAST_VISITED);
     
     // Creates cookies if none have been created
@@ -42,7 +42,7 @@ class CookieManager extends React.Component {
       this.props.setScore(cookies.get(SCORE));
     }
 
-    cookies.set(LAST_VISITED, today);
+    cookies.set(LAST_VISITED, today, { expires: expireDate });
   }
 
   componentDidUpdate() {
@@ -50,7 +50,7 @@ class CookieManager extends React.Component {
       cookies, expireDate, guesses,
       keyboard, letterNum, row, score
     } = this.props;
-    const details = { expires: expireDate, path: '/' };
+    const details = { expires: expireDate, path: "/" };
 
     cookies.set(GUESSES, guesses, details);
     cookies.set(KEYBOARD, keyboard, details);
@@ -63,8 +63,9 @@ class CookieManager extends React.Component {
     const { cookies, expireDate } = this.props;
     const { guesses, keyboard, letterNum, row, score } = initialState;
     const details = { expires: expireDate, path: '/' };
+    console.log(typeof(expireDate))
     
-    cookies.set(GUESSES, guesses, details);
+    cookies.set(GUESSES, guesses, { expires: expireDate, path: '/' });
     cookies.set(KEYBOARD, keyboard, details);
     cookies.set(LETTER_NUM, letterNum, details);
     cookies.set(ROW, row, details);
