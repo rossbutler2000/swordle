@@ -44,7 +44,7 @@ class ScoreModal extends React.Component {
     let totalGames = 0;
     let numerator = 0;
     Object.keys(score).forEach(key => {
-      numerator += key === NO_FINISH ? null : key * score[key];
+      numerator += key === NO_FINISH ? 8 * score[NO_FINISH] : key * score[key];
       totalGames += score[key];
     });
 
