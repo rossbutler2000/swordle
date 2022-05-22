@@ -38,6 +38,20 @@ class ScoreModal extends React.Component {
     });
   }
 
+  item = (header, detail) => {
+
+    return (
+      <div className="score-item">
+        <div className="score-item-header">
+          <b>{header}</b>
+        </div>
+        <div className="score-item-detail">
+          {detail}
+        </div>
+      </div>
+    );
+  }
+
   stats = () => {
     const { score } = this.props;
 
@@ -51,12 +65,11 @@ class ScoreModal extends React.Component {
     const average = numerator / totalGames;
 
     return (
-      <div>
-        Total Games: {totalGames}
-        <br />
-        Average: {Number.isFinite(average) ? average.toFixed(2) : "None"}
+      <div className="score-item-container">
+        {this.item("Total Games: ", totalGames)}
+        {this.item("Average:", Number.isFinite(average) ? average.toFixed(2) : "None")}
       </div>
-    )
+    );
   }
 
   render() {
