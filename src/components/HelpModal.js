@@ -33,12 +33,12 @@ class HelpModal extends React.Component {
       >
         <Header textAlign="center">HOW TO PLAY</Header>
         <Modal.Content>
-          Swordle is a game where you try and
+          Swordle is a game where you try to
           guess a six letter word with 7 tries.
           <br />
           <br />
-          Every day the word changes and you
-          will have an opportuntiy to guess it.
+          Each day the word changes for a new 
+          opportuntiy to guess it.
           <br />
           <br />
           After each guess, the letters will change 
@@ -48,19 +48,19 @@ class HelpModal extends React.Component {
           <br />
           <hr />
 
-          {initialState.colors[0].toUpperCase()} means 
-          you got the correct letter in the correct place:
+          {initialState.colors[0].toUpperCase()} indicates 
+          the correct letter in the correct place:
           {this.tile(this.letterObj0)}
 
           <br />
 
-          {initialState.colors[1].toUpperCase()} means
-          you got the correct letter in the wrong place:
+          {initialState.colors[1].toUpperCase()} indicates
+          correct letter in the wrong place:
           {this.tile(this.letterObj1)}
 
           <br />
 
-          {initialState.colors[2].toUpperCase()} means
+          {initialState.colors[2].toUpperCase()} indicates
           that letter is not in the word.
           {this.tile(this.letterObj2)}
         </Modal.Content>
