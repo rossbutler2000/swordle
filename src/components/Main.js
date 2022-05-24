@@ -5,6 +5,7 @@ import { Container }  from "semantic-ui-react";
 import FailModal from "./FailModal";
 import GuessGrid from "./GuessGrid";
 import Header from "./Header";
+import HelpModal from "./HelpModal";
 import Keyboard from "./Keyboard";
 import ScoreModal from "./ScoreModal";
 import Solver from "./Solver";
@@ -20,8 +21,9 @@ class Main extends React.Component {
   render() {
     return (
       <div className="app">
-        <ScoreModal />
         <FailModal />
+        <HelpModal />
+        <ScoreModal />
         <Solver />
         <Header />
 

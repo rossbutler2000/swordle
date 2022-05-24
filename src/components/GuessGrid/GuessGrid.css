@@ -1,0 +1,16 @@
+.ui.grid>.row.word-row {
+  display: flex;
+  padding: 0;
+  flex: 1;
+  flex-wrap: nowrap;
+}
+
+.ui.grid.guess-grid {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  min-width: 300px;
+  max-width: 400px;
+  max-height: 500px;
+}

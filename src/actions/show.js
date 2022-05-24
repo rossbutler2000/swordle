@@ -1,8 +1,14 @@
-import { FAIL, SHOW_SCORE } from "../data/types";
+import { FAIL, HELP, SHOW_SCORE } from "../data/types";
 
 
 export const showFail = (show) => {
   return { type: FAIL, payload: show };
+}
+
+export const showHelp = () => (dispatch, getState) => {
+  const { helpModal } = getState();
+
+  dispatch({ type: HELP, payload: !helpModal });
 }
 
 export const showScore = () => (dispatch, getState) => {

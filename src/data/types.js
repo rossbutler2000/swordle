@@ -5,6 +5,7 @@ export const EXPIRY_DATE = "EXPIRY_DATE";
 export const FAIL = "FAIL";
 export const FINISHED = "FINISHED";
 export const GUESSES = "GUESSES";
+export const HELP = "HELP";
 export const KEYBOARD = "KEYBOARD";
 export const LAST_VISITED = "LAST_VISITED";
 export const LETTER_NUM = "LETTER_NUM";

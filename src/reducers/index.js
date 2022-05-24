@@ -6,6 +6,7 @@ import {
   FAIL,
   FINISHED,
   GUESSES,
+  HELP,
   KEYBOARD,
   LETTER_NUM,
   ROW,
@@ -64,11 +65,19 @@ const finishedTodayReducer = (finished = false, action) => {
 }
 
 const guessReducer = (guessesObject = guesses, action) => {
-  if(action.type === GUESSES) {
+  if (action.type === GUESSES) {
     return [...action.payload];
   }
 
   return [...guessesObject];
+}
+
+const helpModalReducer = (show = false, action) => {
+  if (action.type === HELP) {
+    return action.payload;
+  }
+
+  return show;
 }
 
 const keyboardReducer = (keyBoard = keyboard, action) => {
@@ -143,6 +152,7 @@ export default combineReducers({
   failModal: failModalReducer,
   finishedToday: finishedTodayReducer,
   guesses: guessReducer,
+  helpModal: helpModalReducer,
   keyboard: keyboardReducer,
   letterNum: letterNumReducer,
   row: rowReducer,

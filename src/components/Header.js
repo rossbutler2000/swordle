@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { Menu } from "semantic-ui-react";
 
-import { showScore } from "../actions";
+import { showHelp, showScore } from "../actions";
 import "./Header.css";
 
 class Header extends React.Component {
@@ -13,7 +13,10 @@ class Header extends React.Component {
       <Menu fluid borderless>
 
         <Menu.Item position="left">
-          <Menu.Item position="left" />
+          <Menu.Item position="left" 
+            icon="question circle"
+            onClick={this.props.showHelp}
+          />
           <Menu.Item position="left" />
         </Menu.Item>
 
@@ -40,4 +43,4 @@ const mapStateToProps = (state) => {
   }
 } 
 
-export default connect(mapStateToProps, { showScore })(Header);
+export default connect(mapStateToProps, { showHelp, showScore })(Header);

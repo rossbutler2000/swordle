@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Header, Modal } from "semantic-ui-react";
+import { Modal } from "semantic-ui-react";
 
 import { showFail } from "../actions";
 
@@ -13,7 +13,7 @@ class FailModal extends React.Component {
         onClose={() => this.props.showFail(false)}
         size="tiny"
       >
-        <Header>Sorry</Header>
+        <Modal.Header>Sorry</Modal.Header>
         <Modal.Content>
           Today's word is:
           <br />
@@ -21,7 +21,7 @@ class FailModal extends React.Component {
           <b>{this.props.todaysWord}</b>
         </Modal.Content>
       </Modal>
-    )
+    );
   }
 }
 

@@ -1,0 +1,12 @@
+.ui.label.letter-tile {
+  border: solid;
+  display: flex;
+  min-width: 50px;
+  min-height: 50px;
+  padding: 0;
+  font-size: 2rem;
+  justify-content: center;
+  align-items: center;
+  margin: 2px;
+  vertical-align: middle;
+}
